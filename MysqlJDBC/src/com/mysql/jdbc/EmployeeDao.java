@@ -32,35 +32,32 @@ public class EmployeeDao {
 
 	}
 
-	public static void Update(Employee employee) throws SQLException {
+	public static void Update(String smail,String sname,int sid) throws SQLException {
 		Connection con = Db.connect();
-		PreparedStatement psm = con.prepareStatement(Query.update);
-		psm.setInt(1, employee.getSid());
-		psm.setString(2, employee.getSname());
-		psm.setString(3, employee.getSmail());
+		PreparedStatement psm = con.prepareStatement("UPDATE STUDENT SET sname = '"+ sname + "', smail = '"  + smail + "' WHERE sid = " + sid+"");
 		psm.executeUpdate();
 		System.out.println("UPDATED SUCCSESSFULLY");
 		con.close();
 
 	}
 
-	public static void Delete(Employee employee) throws SQLException {
+	public static void Delete(int id) throws SQLException {
 
 		Connection con = Db.connect();
 		PreparedStatement psm = con.prepareStatement(Query.delete);
-		psm.setInt(1, employee.getSid());
+		psm.setInt(1, id);
 		psm.execute();
 		System.out.println("Deleted SUCCSESSFULLY");
 		con.close();
 
 	}
 
-	public static void Create(Employee employee) throws SQLException {
+	public static void Create(String sname, String smail) throws SQLException {
 		Connection con = Db.connect();
 		PreparedStatement psm = con.prepareStatement(Query.insert);
-		psm.setInt(1, employee.getSid());
-		psm.setString(2, employee.getSname());
-		psm.setString(3, employee.getSmail());
+	//	psm.setInt(1, sid);
+		psm.setString(2, sname);
+		psm.setString(3, smail);
 		psm.execute();
 		System.out.println("Employee Added " + psm);
 	}

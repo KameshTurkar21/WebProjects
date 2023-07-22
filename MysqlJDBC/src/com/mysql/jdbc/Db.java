@@ -9,7 +9,7 @@ public class Db {
 	static Connection con = null;
 
 	public static Connection connect() {
-		String url = "com.mysql.cj.jdbc.Driver";
+		String url = "jdbc:mysql://localhost:3306/mydb";
 		String user = "root";
 		String password = "2110";
 
